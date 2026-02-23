@@ -4,31 +4,30 @@ package com.example.API.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "Loginuser")
-
-public class Login {
+@Table(name = "LoginUserInfo")
+public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-            private Long id;
+    private Long id;
 
-    @Column(nullable = false, unique = true)
-    String username;
 
     @Column(nullable = false)
-    String password;
-
+    String name;
     @Column(nullable = false)
     String email;
+    @Column(nullable = false)
+    String password;
+    @Column(nullable = false)
+    String phone;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserInfo userInfo;
+
+    @OneToOne(mappedBy = "userInfo")
+    private Login login;
 }
